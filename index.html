@@ -18,7 +18,7 @@ color:#222;
 overflow-x:hidden;
 }
 
-/* NAVBAR */
+/* NAV */
 nav{
 display:flex;
 justify-content:space-between;
@@ -43,19 +43,11 @@ color:#888;
 margin-top:-3px;
 }
 
-.nav-actions{
-display:flex;
-gap:15px;
-align-items:center;
-cursor:pointer;
-}
-
 /* HERO */
 .hero{
 text-align:center;
 padding:80px 20px;
 background:linear-gradient(120deg,#ffe4ec,#efe7ff,#e6f7ff);
-position:relative;
 }
 
 .hero h1{
@@ -68,7 +60,7 @@ margin-top:10px;
 color:#555;
 }
 
-/* FILTER BAR */
+/* FILTERS */
 .filters{
 display:flex;
 justify-content:center;
@@ -147,7 +139,7 @@ cursor:pointer;
 
 button:hover{background:#ff3f82;}
 
-/* CART DRAWER (SHOPIFY STYLE) */
+/* CART */
 .cart-overlay{
 position:fixed;
 top:0;right:0;
@@ -243,9 +235,7 @@ color:#777;
 <span>by Mariam</span>
 </div>
 
-<div class="nav-actions">
-<div onclick="toggleCart()">🛒</div>
-</div>
+<div onclick="toggleCart()" style="cursor:pointer">🛒</div>
 </nav>
 
 <!-- HERO -->
@@ -270,7 +260,8 @@ color:#777;
 <!-- PRODUCTS -->
 <div class="products">
 
-<div class="card" data-cat="stationery" onclick="openPopup('Scrapbook','scrapbook.jpg',2495)">
+<!-- 1 -->
+<div class="card" data-cat="stationery" onclick="openPopup('Scrapbook Set','scrapbook.jpg',2495)">
 <img src="scrapbook.jpg">
 <div class="card-content">
 <h3>Scrapbook Set</h3>
@@ -279,6 +270,7 @@ color:#777;
 </div>
 </div>
 
+<!-- 2 -->
 <div class="card" data-cat="stickers" onclick="openPopup('Washi Tape','tape.jpg',375)">
 <img src="tape.jpg">
 <div class="card-content">
@@ -288,9 +280,69 @@ color:#777;
 </div>
 </div>
 
+<!-- 3 -->
+<div class="card" data-cat="stationery" onclick="openPopup('Floral Journal','journal.jpg',850)">
+<img src="journal.jpg">
+<div class="card-content">
+<h3>Floral Journal</h3>
+<div class="price">PKR 850</div>
+<button onclick="add(event,'Floral Journal',850)">Add to Cart</button>
+</div>
 </div>
 
-<!-- CART OVERLAY -->
+<!-- 4 -->
+<div class="card" data-cat="stickers" onclick="openPopup('Aesthetic Sticker Pack','stickers.jpg',300)">
+<img src="stickers.jpg">
+<div class="card-content">
+<h3>Aesthetic Sticker Pack</h3>
+<div class="price">PKR 300</div>
+<button onclick="add(event,'Aesthetic Sticker Pack',300)">Add to Cart</button>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card" data-cat="gifts" onclick="openPopup('Luxury Gift Box','giftbox.jpg',1800)">
+<img src="giftbox.jpg">
+<div class="card-content">
+<h3>Luxury Gift Box</h3>
+<div class="price">PKR 1800</div>
+<button onclick="add(event,'Luxury Gift Box',1800)">Add to Cart</button>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card" data-cat="stationery" onclick="openPopup('Pastel Pen Set','pens.jpg',650)">
+<img src="pens.jpg">
+<div class="card-content">
+<h3>Pastel Pen Set</h3>
+<div class="price">PKR 650</div>
+<button onclick="add(event,'Pastel Pen Set',650)">Add to Cart</button>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card" data-cat="gifts" onclick="openPopup('Birthday Box','birthdaybox.jpg',2200)">
+<img src="birthdaybox.jpg">
+<div class="card-content">
+<h3>Birthday Box</h3>
+<div class="price">PKR 2200</div>
+<button onclick="add(event,'Birthday Box',2200)">Add to Cart</button>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card" data-cat="stickers" onclick="openPopup('Minimal Stickers','minimalstickers.jpg',450)">
+<img src="minimalstickers.jpg">
+<div class="card-content">
+<h3>Minimal Stickers</h3>
+<div class="price">PKR 450</div>
+<button onclick="add(event,'Minimal Stickers',450)">Add to Cart</button>
+</div>
+</div>
+
+</div>
+
+<!-- CART -->
 <div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
 
 <div class="cart" id="cart">
