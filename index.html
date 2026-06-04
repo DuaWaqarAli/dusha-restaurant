@@ -10,197 +10,225 @@
 <style>
 
 /* BASE */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
-background:linear-gradient(135deg,#fff7f9,#f4f0ff,#eef9ff);
-color:#333;
+background:#faf7fb;
+color:#222;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 20px rgba(0,0,0,0.06);
+}
+
+nav h1{
+font-size:20px;
+letter-spacing:3px;
+}
+
+nav span{
+font-size:11px;
+display:block;
+color:#888;
+margin-top:-3px;
+}
+
+.nav-actions{
+display:flex;
+gap:15px;
+align-items:center;
+cursor:pointer;
 }
 
 /* HERO */
 .hero{
 text-align:center;
-padding:90px 20px;
-background:linear-gradient(120deg,#ffe4ec,#e8e1ff,#dff7ff);
+padding:80px 20px;
+background:linear-gradient(120deg,#ffe4ec,#efe7ff,#e6f7ff);
 position:relative;
-overflow:hidden;
 }
 
 .hero h1{
-font-size:60px;
+font-size:55px;
 letter-spacing:6px;
-animation:fadeUp 1s ease;
 }
 
 .hero p{
 margin-top:10px;
 color:#555;
-font-size:16px;
 }
 
-/* floating glow */
-.hero::before,.hero::after{
-content:"";
-position:absolute;
-width:220px;
-height:220px;
-border-radius:50%;
-filter:blur(90px);
-opacity:0.5;
-}
-
-.hero::before{
-background:#ffb6d5;
-top:-60px;
-left:-60px;
-}
-
-.hero::after{
-background:#b6d8ff;
-bottom:-60px;
-right:-60px;
-}
-
-/* CATEGORY */
-.categories{
+/* FILTER BAR */
+.filters{
 display:flex;
 justify-content:center;
 gap:10px;
 flex-wrap:wrap;
-margin-top:25px;
+margin:20px;
 }
 
-.cat{
-padding:8px 15px;
-border-radius:20px;
+.filter{
+padding:8px 14px;
 background:white;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
-font-size:13px;
-transition:0.3s;
+border-radius:20px;
 cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+transition:0.3s;
 }
 
-.cat:hover{
-transform:scale(1.05);
-background:#ffe6f0;
+.filter:hover{transform:scale(1.05);}
+
+/* SEARCH */
+.search{
+display:flex;
+justify-content:center;
+margin:10px;
+}
+
+.search input{
+padding:10px;
+width:250px;
+border:1px solid #ddd;
+border-radius:10px;
+outline:none;
 }
 
 /* PRODUCTS */
-.section-title{
-text-align:center;
-margin-top:40px;
-font-size:26px;
-font-weight:600;
-}
-
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:25px;
-padding:40px;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+padding:30px;
 }
 
 .card{
 background:white;
-border-radius:20px;
+border-radius:18px;
 overflow:hidden;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-transition:0.4s;
-animation:fadeUp 0.8s ease;
+transition:0.3s;
+cursor:pointer;
 }
 
-.card:hover{
-transform:translateY(-10px) scale(1.02);
-}
+.card:hover{transform:translateY(-8px);}
 
 .card img{
 width:100%;
-height:220px;
+height:200px;
 object-fit:cover;
-background:#f2f2f2;
 }
 
 .card-content{
-padding:15px;
+padding:12px;
 }
 
-.card h3{
-font-size:15px;
-margin-bottom:5px;
-}
-
-.price{
-color:#ff4f87;
-font-weight:600;
-margin-bottom:10px;
-}
+.price{color:#ff4f87;font-weight:600;}
 
 /* BUTTON */
 button{
-background:#ff6fa3;
-border:none;
-color:white;
-padding:10px;
-border-radius:12px;
 width:100%;
+padding:10px;
+border:none;
+background:#ff6fa3;
+color:white;
+border-radius:10px;
 cursor:pointer;
-transition:0.3s;
 }
 
-button:hover{
-background:#ff3f82;
+button:hover{background:#ff3f82;}
+
+/* CART DRAWER (SHOPIFY STYLE) */
+.cart-overlay{
+position:fixed;
+top:0;right:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.4);
+display:none;
 }
 
-/* CART */
 .cart{
 position:fixed;
-right:20px;
-bottom:20px;
-width:290px;
-background:rgba(255,255,255,0.85);
-backdrop-filter:blur(12px);
-border-radius:18px;
-padding:15px;
-box-shadow:0 15px 35px rgba(0,0,0,0.15);
+right:-400px;
+top:0;
+width:320px;
+height:100%;
+background:white;
+padding:20px;
+transition:0.3s;
+box-shadow:-10px 0 30px rgba(0,0,0,0.2);
 }
 
-.cart h4{
-margin-bottom:10px;
-}
+.cart.open{right:0;}
+
+.cart h3{margin-bottom:10px;}
 
 .cart-items{
 font-size:13px;
-max-height:140px;
+height:60%;
 overflow:auto;
-margin-bottom:10px;
 }
 
-.checkout{
+.small{
+font-size:12px;
+color:#666;
+}
+
+.checkout-btn{
 background:#222;
 margin-top:10px;
+}
+
+/* POPUP */
+.popup{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,0.5);
+}
+
+.popup-box{
+background:white;
+width:320px;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.popup-box img{
+width:100%;
+border-radius:10px;
+}
+
+/* WHATSAPP */
+.wa{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#25D366;
+color:white;
+padding:12px 15px;
+border-radius:50px;
+cursor:pointer;
 }
 
 /* FOOTER */
 footer{
 text-align:center;
-padding:40px;
+padding:30px;
 color:#777;
-}
-
-/* ANIMATION */
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-@media(max-width:600px){
-.hero h1{font-size:38px;}
-.products{padding:20px;}
 }
 
 </style>
@@ -208,105 +236,154 @@ to{opacity:1;transform:translateY(0);}
 
 <body>
 
+<!-- NAV -->
+<nav>
+<div>
+<h1>ORSTAT</h1>
+<span>by Mariam</span>
+</div>
+
+<div class="nav-actions">
+<div onclick="toggleCart()">🛒</div>
+</div>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
 <h1>ORSTAT</h1>
 <p>Stationery • Stickers • Gifts • Vibes</p>
-
-<div class="categories">
-<div class="cat">Stationery</div>
-<div class="cat">Stickers</div>
-<div class="cat">Gifts</div>
-<div class="cat">Custom Orders</div>
 </div>
+
+<!-- FILTERS -->
+<div class="filters">
+<div class="filter" onclick="filter('all')">All</div>
+<div class="filter" onclick="filter('stationery')">Stationery</div>
+<div class="filter" onclick="filter('stickers')">Stickers</div>
+<div class="filter" onclick="filter('gifts')">Gifts</div>
+</div>
+
+<!-- SEARCH -->
+<div class="search">
+<input id="search" onkeyup="search()" placeholder="Search products...">
 </div>
 
 <!-- PRODUCTS -->
-<h2 class="section-title">Shop Collection</h2>
-
 <div class="products">
 
-<!-- PRODUCT 1 -->
-<div class="card">
+<div class="card" data-cat="stationery" onclick="openPopup('Scrapbook','scrapbook.jpg',2495)">
 <img src="scrapbook.jpg">
 <div class="card-content">
-<h3>Red Warm Mail Series Scrapbooking Gift Box Set</h3>
+<h3>Scrapbook Set</h3>
 <div class="price">PKR 2495</div>
-<button onclick="addToCart('Scrapbooking Gift Box Set', 2495)">Add to Cart</button>
+<button onclick="add(event,'Scrapbook Set',2495)">Add to Cart</button>
 </div>
 </div>
 
-<!-- PRODUCT 2 -->
-<div class="card">
+<div class="card" data-cat="stickers" onclick="openPopup('Washi Tape','tape.jpg',375)">
 <img src="tape.jpg">
 <div class="card-content">
-<h3>Stripe Gold Foil Pink Washi Tape</h3>
+<h3>Washi Tape</h3>
 <div class="price">PKR 375</div>
-<button onclick="addToCart('Washi Tape', 375)">Add to Cart</button>
-</div>
-</div>
-
-<!-- PRODUCT 3 -->
-<div class="card">
-<img src="journal.jpg">
-<div class="card-content">
-<h3>Cafe Terrace at Night Gift Box Set</h3>
-<div class="price">PKR 2995</div>
-<button onclick="addToCart('Gift Box Set', 2995)">Add to Cart</button>
+<button onclick="add(event,'Washi Tape',375)">Add to Cart</button>
 </div>
 </div>
 
 </div>
 
-<!-- CART -->
-<div class="cart">
-<h4>🛒 Your Cart</h4>
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
+
+<div class="cart" id="cart">
+<h3>🛒 Your Cart</h3>
 <div class="cart-items" id="cartItems"></div>
-<div><strong>Total: PKR <span id="total">0</span></strong></div>
 
-<button class="checkout" onclick="checkout()">Checkout on WhatsApp</button>
+<p class="small">Total: PKR <span id="total">0</span></p>
+
+<button class="checkout-btn" onclick="checkout()">Checkout on WhatsApp</button>
 </div>
 
-<!-- FOOTER -->
-<footer>
-Made with ♡ by ORSTAT
-</footer>
+<!-- POPUP -->
+<div class="popup" id="popup" onclick="closePopup()">
+<div class="popup-box">
+<img id="pimg">
+<h3 id="pname"></h3>
+<p id="pprice"></p>
+</div>
+</div>
+
+<!-- WHATSAPP -->
+<div class="wa" onclick="checkout()">WhatsApp</div>
+
+<footer>Made with ♡ by ORSTAT</footer>
 
 <script>
 
-let cart = [];
-let total = 0;
+let cart=[];
+let total=0;
 
-function addToCart(name, price){
-cart.push({name, price});
-total += price;
-updateCart();
+function add(e,name,price){
+e.stopPropagation();
+cart.push({name,price});
+update();
 }
 
-function updateCart(){
-let cartItems = document.getElementById("cartItems");
-cartItems.innerHTML = "";
+function update(){
+let box=document.getElementById("cartItems");
+box.innerHTML="";
+total=0;
 
-cart.forEach(item=>{
-cartItems.innerHTML += "• " + item.name + " - PKR " + item.price + "<br>";
+cart.forEach(i=>{
+total+=i.price;
+box.innerHTML+=`• ${i.name} - PKR ${i.price}<br>`;
 });
 
-document.getElementById("total").innerText = total;
+document.getElementById("total").innerText=total;
+}
+
+function toggleCart(){
+let c=document.getElementById("cart");
+let o=document.getElementById("overlay");
+
+if(c.classList.contains("open")){
+c.classList.remove("open");
+o.style.display="none";
+}else{
+c.classList.add("open");
+o.style.display="block";
+}
 }
 
 function checkout(){
-
-let message = "Hello ORSTAT 🌷 I want to order:%0A%0A";
-
-cart.forEach(item=>{
-message += "• " + item.name + " - PKR " + item.price + "%0A";
+let msg="Hello ORSTAT 🌷%0A%0A";
+cart.forEach(i=>{
+msg+=`• ${i.name} - PKR ${i.price}%0A`;
 });
+msg+=`%0ATotal: PKR ${total}`;
+window.open("https://wa.me/923023849098?text="+msg,"_blank");
+}
 
-message += "%0ATotal: PKR " + total;
+function search(){
+let val=document.getElementById("search").value.toLowerCase();
+document.querySelectorAll(".card").forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(val)?"block":"none";
+});
+}
 
-let phone = "923023849098";
+function filter(cat){
+document.querySelectorAll(".card").forEach(c=>{
+c.style.display=(cat==="all"||c.dataset.cat===cat)?"block":"none";
+});
+}
 
-window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
+function openPopup(name,img,price){
+document.getElementById("popup").style.display="flex";
+document.getElementById("pimg").src=img;
+document.getElementById("pname").innerText=name;
+document.getElementById("pprice").innerText="PKR "+price;
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
 }
 
 </script>
