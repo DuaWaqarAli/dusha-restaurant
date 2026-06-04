@@ -12,10 +12,19 @@
 /* BASE */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
+/* 🌈 MOVING BACKGROUND */
 body{
-background:#faf7fb;
+background: linear-gradient(-45deg, #ffe4ec, #efe7ff, #e6f7ff, #fff3d6);
+background-size: 400% 400%;
+animation: gradientBG 12s ease infinite;
 color:#222;
 overflow-x:hidden;
+}
+
+@keyframes gradientBG {
+0% {background-position: 0% 50%;}
+50% {background-position: 100% 50%;}
+100% {background-position: 0% 50%;}
 }
 
 /* NAV */
@@ -31,33 +40,21 @@ z-index:1000;
 box-shadow:0 5px 20px rgba(0,0,0,0.06);
 }
 
-nav h1{
-font-size:20px;
-letter-spacing:3px;
-}
-
-nav span{
-font-size:11px;
-display:block;
-color:#888;
-margin-top:-3px;
-}
-
 /* HERO */
 .hero{
 text-align:center;
-padding:80px 20px;
-background:linear-gradient(120deg,#ffe4ec,#efe7ff,#e6f7ff);
+padding:70px 20px;
 }
 
-.hero h1{
-font-size:55px;
-letter-spacing:6px;
+.hero img{
+height:100px;
+margin-bottom:10px;
 }
 
 .hero p{
 margin-top:10px;
 color:#555;
+letter-spacing:2px;
 }
 
 /* FILTERS */
@@ -231,16 +228,17 @@ color:#777;
 <!-- NAV -->
 <nav>
 <div>
-<h1>ORSTAT</h1>
-<span>by Mariam</span>
+<img src="logo.png" style="height:45px;">
 </div>
 
-<div onclick="toggleCart()" style="cursor:pointer">🛒</div>
+<div onclick="toggleCart()" style="cursor:pointer;font-size:22px;">
+🛒
+</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-<h1>ORSTAT</h1>
+<img src="logo.png">
 <p>Stationery • Stickers • Gifts • Vibes</p>
 </div>
 
@@ -331,114 +329,4 @@ color:#777;
 </div>
 
 <!-- 8 -->
-<div class="card" data-cat="stickers" onclick="openPopup('Minimal Stickers','minimalstickers.jpg',450)">
-<img src="minimalstickers.jpg">
-<div class="card-content">
-<h3>Minimal Stickers</h3>
-<div class="price">PKR 450</div>
-<button onclick="add(event,'Minimal Stickers',450)">Add to Cart</button>
-</div>
-</div>
-
-</div>
-
-<!-- CART -->
-<div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
-
-<div class="cart" id="cart">
-<h3>🛒 Your Cart</h3>
-<div class="cart-items" id="cartItems"></div>
-
-<p class="small">Total: PKR <span id="total">0</span></p>
-
-<button class="checkout-btn" onclick="checkout()">Checkout on WhatsApp</button>
-</div>
-
-<!-- POPUP -->
-<div class="popup" id="popup" onclick="closePopup()">
-<div class="popup-box">
-<img id="pimg">
-<h3 id="pname"></h3>
-<p id="pprice"></p>
-</div>
-</div>
-
-<!-- WHATSAPP -->
-<div class="wa" onclick="checkout()">WhatsApp</div>
-
-<footer>Made with ♡ by ORSTAT</footer>
-
-<script>
-
-let cart=[];
-let total=0;
-
-function add(e,name,price){
-e.stopPropagation();
-cart.push({name,price});
-update();
-}
-
-function update(){
-let box=document.getElementById("cartItems");
-box.innerHTML="";
-total=0;
-
-cart.forEach(i=>{
-total+=i.price;
-box.innerHTML+=`• ${i.name} - PKR ${i.price}<br>`;
-});
-
-document.getElementById("total").innerText=total;
-}
-
-function toggleCart(){
-let c=document.getElementById("cart");
-let o=document.getElementById("overlay");
-
-if(c.classList.contains("open")){
-c.classList.remove("open");
-o.style.display="none";
-}else{
-c.classList.add("open");
-o.style.display="block";
-}
-}
-
-function checkout(){
-let msg="Hello ORSTAT 🌷%0A%0A";
-cart.forEach(i=>{
-msg+=`• ${i.name} - PKR ${i.price}%0A`;
-});
-msg+=`%0ATotal: PKR ${total}`;
-window.open("https://wa.me/923023849098?text="+msg,"_blank");
-}
-
-function search(){
-let val=document.getElementById("search").value.toLowerCase();
-document.querySelectorAll(".card").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(val)?"block":"none";
-});
-}
-
-function filter(cat){
-document.querySelectorAll(".card").forEach(c=>{
-c.style.display=(cat==="all"||c.dataset.cat===cat)?"block":"none";
-});
-}
-
-function openPopup(name,img,price){
-document.getElementById("popup").style.display="flex";
-document.getElementById("pimg").src=img;
-document.getElementById("pname").innerText=name;
-document.getElementById("pprice").innerText="PKR "+price;
-}
-
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
-
-</script>
-
-</body>
-</html>
+<div class="card" data-cat="stickers" onclick="
