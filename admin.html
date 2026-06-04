@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ORSTAT Admin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:#f7f7f7;
+}
+
+.login{
+width:300px;
+margin:100px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:5px 0;
+}
+
+button{
+padding:10px;
+width:100%;
+background:#222;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.panel{
+display:none;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:10px;
+margin:10px 0;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.addBox{
+background:white;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="loginBox">
+<h3>ORSTAT Admin Login</h3>
+<input type="password" id="pass" placeholder="Enter password">
+<button onclick="login()">Login</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="panel" id="panel">
+
+<h2>Product Manager</h2>
+
+<div class="addBox">
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="image" placeholder="Image file name (e.g. tape.jpg)">
+<button onclick="addProduct()">Add Product</button>
+</div>
+
+<div id="list"></div>
+
+</div>
+
+<script>
+
+/* SIMPLE PASSWORD */
+function login(){
+let p=document.getElementById("pass").value;
+
+if(p==="orstat123"){
+document.getElementById("loginBox").style.display="none";
+document.getElementById("panel").style.display="block";
+load();
+}else{
+alert("Wrong password");
+}
+}
+
+/* DATABASE (same as store) */
+let products = JSON.parse(localStorage.getItem("products")) || [
+{name:"Scrapbook Set", price:2495, image:"scrapbook.jpg"},
+{name:"Washi Tape", price:375, image:"tape.jpg"}
+];
+
+/* SAVE */
+function save(){
+localStorage.setItem("products", JSON.stringify(products));
+}
+
+/* ADD PRODUCT */
+function addProduct(){
+
+let n=document.getElementById("name").value;
+let p=parseInt(document.getElementById("price").value);
+let i=document.getElementById("image").value;
+
+products.push({name:n,price:p,image:i});
+save();
+load();
+
+}
+
+/* DELETE */
+function del(index){
+products.splice(index,1);
+save();
+load();
+}
+
+/* LOAD LIST */
+function load(){
+
+let box=document.getElementById("list");
+box.innerHTML="";
+
+products.forEach((p,i)=>{
+box.innerHTML += `
+<div class="card">
+<div>
+<b>${p.name}</b><br>
+PKR ${p.price}
+</div>
+<button onclick="del(${i})">Delete</button>
+</div>
+`;
+});
+
+}
+
+</script>
+
+</body>
+</html>
