@@ -31,19 +31,20 @@ font-weight:600;
 letter-spacing:2px;
 }
 
+/* MENU */
+.menu{
+font-size:22px;
+cursor:pointer;
+}
+
 /* HERO */
 .hero{
 text-align:center;
-padding:50px 20px;
+padding:30px 20px;
 }
 
 .hero h1{
-font-size:36px;
-}
-
-.hero p{
-color:#666;
-margin-top:8px;
+font-size:32px;
 }
 
 /* PRODUCTS */
@@ -59,6 +60,11 @@ border:1px solid #eee;
 border-radius:10px;
 overflow:hidden;
 cursor:pointer;
+transition:0.2s;
+}
+
+.card:hover{
+transform:scale(1.03);
 }
 
 .card img{
@@ -76,7 +82,6 @@ color:#b07a8c;
 font-weight:600;
 }
 
-/* BUTTON */
 button{
 width:100%;
 padding:8px;
@@ -86,54 +91,162 @@ border:none;
 cursor:pointer;
 }
 
+/* CART */
+.cart{
+position:fixed;
+right:15px;
+bottom:15px;
+width:280px;
+background:white;
+border:1px solid #eee;
+padding:10px;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.checkout{
+background:#25D366;
+margin-top:10px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+<div class="menu">☰</div>
 <div class="brand">ORSTAT</div>
 <div>🛒</div>
 </header>
 
 <div class="hero">
 <h1>Stationery • Stickers • Gifts</h1>
-<p>Simple aesthetic store</p>
 </div>
 
-<div class="products">
+<!-- PRODUCTS -->
+<div class="products" id="productList"></div>
 
-<!-- PRODUCT 1 -->
-<div class="card">
-<img src="scrapbook.jpg">
+<!-- CART -->
+<div class="cart">
+<h4>Cart</h4>
+<div id="items"></div>
+<p><b>Total: PKR <span id="total">0</span></b></p>
+<button class="checkout" onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+
+/* =========================
+   🗄 DATABASE (EDIT HERE)
+   ========================= */
+
+const products = [
+{
+id:1,
+name:"Scrapbook Set",
+price:2495,
+image:"scrapbook.jpg"
+},
+{
+id:2,
+name:"Washi Tape",
+price:375,
+image:"tape.jpg"
+},
+{
+id:3,
+name:"Floral Journal",
+price:850,
+image:"journal.jpg"
+},
+{
+id:4,
+name:"Sticker Pack",
+price:499,
+image:"stickers.jpg"
+},
+{
+id:5,
+name:"Gift Box Set",
+price:1599,
+image:"giftbox.jpg"
+}
+];
+
+/* ========================= */
+
+let cart=[];
+let total=0;
+
+/* LOAD PRODUCTS */
+function loadProducts(){
+
+let box=document.getElementById("productList");
+box.innerHTML="";
+
+products.forEach(p=>{
+box.innerHTML += `
+<div class="card" onclick="add('${p.name}',${p.price})">
+<img src="${p.image}">
 <div class="card-content">
-<h3>Scrapbook Set</h3>
-<p class="price">PKR 2495</p>
+<h3>${p.name}</h3>
+<p class="price">PKR ${p.price}</p>
 <button>Add to Cart</button>
 </div>
 </div>
+`;
+});
 
-<!-- PRODUCT 2 -->
-<div class="card">
-<img src="tape.jpg">
-<div class="card-content">
-<h3>Washi Tape</h3>
-<p class="price">PKR 375</p>
-<button>Add to Cart</button>
-</div>
-</div>
+}
 
-<!-- PRODUCT 3 -->
-<div class="card">
-<img src="journal.jpg">
-<div class="card-content">
-<h3>Floral Journal</h3>
-<p class="price">PKR 850</p>
-<button>Add to Cart</button>
-</div>
-</div>
+loadProducts();
 
-</div>
+/* CART SYSTEM */
+
+function add(name,price){
+
+let found=cart.find(i=>i.name===name);
+
+if(found){
+found.qty++;
+}else{
+cart.push({name,price,qty:1});
+}
+
+updateCart();
+}
+
+function updateCart(){
+
+let box=document.getElementById("items");
+box.innerHTML="";
+total=0;
+
+cart.forEach(i=>{
+total += i.price*i.qty;
+box.innerHTML += `• ${i.name} x${i.qty}<br>`;
+});
+
+document.getElementById("total").innerText=total;
+}
+
+/* CHECKOUT */
+
+function checkout(){
+
+let msg="Hello ORSTAT 🌸 I want to order:%0A%0A";
+
+cart.forEach(i=>{
+msg += `• ${i.name} x${i.qty} - PKR ${i.price*i.qty}%0A`;
+});
+
+msg += `%0ATotal: PKR ${total}`;
+
+window.open("https://wa.me/923023849098?text="+msg,"_blank");
+}
+
+</script>
 
 </body>
 </html>
