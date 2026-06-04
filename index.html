@@ -5,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ORSTAT Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* BASE */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-
-body{background:#fff;color:#222;}
+body{
+margin:0;
+font-family:Poppins;
+background:#fff;
+color:#222;
+}
 
 /* HEADER */
 header{
@@ -21,50 +23,27 @@ justify-content:space-between;
 align-items:center;
 padding:15px 20px;
 border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-background:white;
-z-index:1000;
 }
 
-.logo{
-height:38px;
+.brand{
+font-size:22px;
+font-weight:600;
+letter-spacing:2px;
 }
 
-/* HAMBURGER */
-.menu-btn{
-font-size:24px;
-cursor:pointer;
+/* HERO */
+.hero{
+text-align:center;
+padding:50px 20px;
 }
 
-/* SIDE MENU */
-.side-menu{
-position:fixed;
-left:-300px;
-top:0;
-width:280px;
-height:100%;
-background:white;
-box-shadow:2px 0 20px rgba(0,0,0,0.1);
-padding:20px;
-transition:0.3s;
-overflow:auto;
-z-index:2000;
+.hero h1{
+font-size:36px;
 }
 
-.side-menu.open{
-left:0;
-}
-
-.side-menu h3{
-margin-bottom:10px;
-}
-
-.side-menu p{
-padding:8px 0;
-font-size:13px;
-border-bottom:1px solid #f1f1f1;
-cursor:pointer;
+.hero p{
+color:#666;
+margin-top:8px;
 }
 
 /* PRODUCTS */
@@ -80,10 +59,7 @@ border:1px solid #eee;
 border-radius:10px;
 overflow:hidden;
 cursor:pointer;
-transition:0.2s;
 }
-
-.card:hover{transform:scale(1.03);}
 
 .card img{
 width:100%;
@@ -96,89 +72,17 @@ padding:10px;
 }
 
 .price{
-color:#c48b9f;
+color:#b07a8c;
 font-weight:600;
 }
 
+/* BUTTON */
 button{
 width:100%;
 padding:8px;
 background:#222;
 color:white;
 border:none;
-cursor:pointer;
-border-radius:6px;
-}
-
-/* PRODUCT POPUP */
-.popup{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.6);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:3000;
-}
-
-.popup-box{
-background:white;
-width:320px;
-padding:15px;
-border-radius:12px;
-text-align:center;
-}
-
-.popup-box img{
-width:100%;
-border-radius:10px;
-}
-
-.qty{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:10px;
-margin:10px 0;
-}
-
-.qty button{
-width:30px;
-height:30px;
-border-radius:50%;
-}
-
-/* CART */
-.cart{
-position:fixed;
-right:15px;
-bottom:15px;
-width:280px;
-background:white;
-border:1px solid #eee;
-padding:10px;
-border-radius:10px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-}
-
-.checkout{
-background:#25D366;
-margin-top:10px;
-}
-
-/* WHATSAPP */
-.wa{
-position:fixed;
-left:15px;
-bottom:15px;
-background:#25D366;
-width:50px;
-height:50px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
 cursor:pointer;
 }
 
@@ -187,176 +91,49 @@ cursor:pointer;
 
 <body>
 
-<!-- HEADER -->
 <header>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<img class="logo" src="logo.png">
-<div onclick="toggleCart()" style="cursor:pointer;">🛒</div>
+<div class="brand">ORSTAT</div>
+<div>🛒</div>
 </header>
 
-<!-- SIDE MENU -->
-<div class="side-menu" id="menu">
-
-<h3>MENU</h3>
-
-<p>New In</p>
-<p>Sale</p>
-<p>Gifts & Bundles</p>
-<p>Stationery</p>
-<p>Journaling & Hobbies</p>
-<p>Bags & Accessories</p>
-<p>Fashion Finds</p>
-<p>Lifestyle & Cute Finds</p>
-<p>Kids</p>
-<p>Under Rs. 99</p>
-<p>Search</p>
-<p>Login / Register</p>
-<p>Need Help? 0316 1727358</p>
-<p>info@blingspot.pk</p>
-
+<div class="hero">
+<h1>Stationery • Stickers • Gifts</h1>
+<p>Simple aesthetic store</p>
 </div>
 
-<!-- PRODUCTS -->
 <div class="products">
 
-<!-- 20 PRODUCTS -->
-<!-- (Images are placeholders — replace with yours) -->
-
-<div class="card" onclick="openProduct('Scrapbook','scrapbook.jpg',2495)">
+<!-- PRODUCT 1 -->
+<div class="card">
 <img src="scrapbook.jpg">
 <div class="card-content">
-<h4>Scrapbook Set</h4>
-<div class="price">PKR 2495</div>
+<h3>Scrapbook Set</h3>
+<p class="price">PKR 2495</p>
+<button>Add to Cart</button>
 </div>
 </div>
 
-<div class="card" onclick="openProduct('Washi Tape','tape.jpg',375)">
+<!-- PRODUCT 2 -->
+<div class="card">
 <img src="tape.jpg">
 <div class="card-content">
-<h4>Washi Tape</h4>
-<div class="price">PKR 375</div>
+<h3>Washi Tape</h3>
+<p class="price">PKR 375</p>
+<button>Add to Cart</button>
 </div>
 </div>
 
-<div class="card" onclick="openProduct('Journal','journal.jpg',850)">
+<!-- PRODUCT 3 -->
+<div class="card">
 <img src="journal.jpg">
 <div class="card-content">
-<h4>Floral Journal</h4>
-<div class="price">PKR 850</div>
+<h3>Floral Journal</h3>
+<p class="price">PKR 850</p>
+<button>Add to Cart</button>
 </div>
 </div>
 
-<div class="card" onclick="openProduct('Gift Box','giftbox.jpg',1800)">
-<img src="giftbox.jpg">
-<div class="card-content">
-<h4>Gift Box</h4>
-<div class="price">PKR 1800</div>
 </div>
-</div>
-
-<!-- EXTRA PRODUCTS -->
-<div class="card" onclick="openProduct('Sticker Pack', 'scrapbook.jpg', 300)"><img src="scrapbook.jpg"><div class="card-content"><h4>Sticker Pack</h4><div class="price">PKR 300</div></div></div>
-<div class="card" onclick="openProduct('Pen Set', 'tape.jpg', 450)"><img src="tape.jpg"><div class="card-content"><h4>Pen Set</h4><div class="price">PKR 450</div></div></div>
-<div class="card" onclick="openProduct('Mini Journal', 'journal.jpg', 600)"><img src="journal.jpg"><div class="card-content"><h4>Mini Journal</h4><div class="price">PKR 600</div></div></div>
-<div class="card" onclick="openProduct('Cute Box', 'giftbox.jpg', 1200)"><img src="giftbox.jpg"><div class="card-content"><h4>Cute Box</h4><div class="price">PKR 1200</div></div></div>
-
-</div>
-
-<!-- PRODUCT POPUP -->
-<div class="popup" id="popup" onclick="closeProduct()">
-<div class="popup-box" onclick="event.stopPropagation()">
-<img id="pimg">
-<h3 id="pname"></h3>
-<p>PKR <span id="pprice"></span></p>
-
-<div class="qty">
-<button onclick="changeQty(-1)">-</button>
-<span id="qty">1</span>
-<button onclick="changeQty(1)">+</button>
-</div>
-
-<button onclick="addToCart()">Add to Cart</button>
-
-<h4 style="margin-top:10px;">You may also like</h4>
-<p style="font-size:12px;">More products here...</p>
-
-</div>
-</div>
-
-<!-- CART -->
-<div class="cart">
-<h4>Cart</h4>
-<div id="cartItems"></div>
-<div><b>Total: PKR <span id="total"></span></b></div>
-<button class="checkout" onclick="checkout()">Checkout</button>
-</div>
-
-<!-- WHATSAPP -->
-<div class="wa" onclick="checkout()">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:22px;">
-</div>
-
-<script>
-
-let cart=[];
-let total=0;
-
-let currentProduct={};
-let qty=1;
-
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("open");
-}
-
-function openProduct(name,img,price){
-currentProduct={name,img,price};
-qty=1;
-document.getElementById("popup").style.display="flex";
-document.getElementById("pimg").src=img;
-document.getElementById("pname").innerText=name;
-document.getElementById("pprice").innerText=price;
-document.getElementById("qty").innerText=qty;
-}
-
-function closeProduct(){
-document.getElementById("popup").style.display="none";
-}
-
-function changeQty(val){
-qty+=val;
-if(qty<1) qty=1;
-document.getElementById("qty").innerText=qty;
-}
-
-function addToCart(){
-cart.push({...currentProduct, qty});
-updateCart();
-closeProduct();
-}
-
-function updateCart(){
-let box=document.getElementById("cartItems");
-box.innerHTML="";
-total=0;
-
-cart.forEach(i=>{
-total+=i.price*i.qty;
-box.innerHTML+=`• ${i.name} x${i.qty} - PKR ${i.price*i.qty}<br>`;
-});
-
-document.getElementById("total").innerText=total;
-}
-
-function checkout(){
-let msg="Hello ORSTAT 🌸%0A%0A";
-cart.forEach(i=>{
-msg+=`• ${i.name} x${i.qty} - PKR ${i.price*i.qty}%0A`;
-});
-msg+=`%0ATotal: PKR ${total}`;
-window.open("https://wa.me/923023849098?text="+msg,"_blank");
-}
-
-</script>
 
 </body>
 </html>
