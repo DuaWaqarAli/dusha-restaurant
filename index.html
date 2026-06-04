@@ -137,49 +137,16 @@ margin-top:10px;
 
 <script>
 
-/* =========================
-   🗄 DATABASE (EDIT HERE)
-   ========================= */
-
-const products = [
-{
-id:1,
-name:"Scrapbook Set",
-price:2495,
-image:"scrapbook.jpg"
-},
-{
-id:2,
-name:"Washi Tape",
-price:375,
-image:"tape.jpg"
-},
-{
-id:3,
-name:"Floral Journal",
-price:850,
-image:"journal.jpg"
-},
-{
-id:4,
-name:"Sticker Pack",
-price:499,
-image:"stickers.jpg"
-},
-{
-id:5,
-name:"Gift Box Set",
-price:1599,
-image:"giftbox.jpg"
-}
+/* LOAD FROM ADMIN PANEL STORAGE */
+let products = JSON.parse(localStorage.getItem("products")) || [
+{name:"Scrapbook Set",price:2495,image:"scrapbook.jpg"},
+{name:"Washi Tape",price:375,image:"tape.jpg"}
 ];
-
-/* ========================= */
 
 let cart=[];
 let total=0;
 
-/* LOAD PRODUCTS */
+/* RENDER */
 function loadProducts(){
 
 let box=document.getElementById("productList");
@@ -201,8 +168,6 @@ box.innerHTML += `
 }
 
 loadProducts();
-
-/* CART SYSTEM */
 
 function add(name,price){
 
@@ -230,8 +195,6 @@ box.innerHTML += `• ${i.name} x${i.qty}<br>`;
 
 document.getElementById("total").innerText=total;
 }
-
-/* CHECKOUT */
 
 function checkout(){
 
