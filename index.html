@@ -13,191 +13,165 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Poppins,sans-serif;
 }
 
 body{
-background:linear-gradient(
-135deg,
-#fff8f7,
-#fdf6ff,
-#f4fbff
-);
-overflow-x:hidden;
-color:#444;
+background:#fff8f6;
+color:#333;
 }
 
-/* Floating blobs */
+/* HEADER */
 
-.blob{
-position:fixed;
-border-radius:50%;
-filter:blur(70px);
-opacity:.4;
-z-index:-1;
-animation:float 10s infinite ease-in-out;
-}
-
-.blob1{
-width:300px;
-height:300px;
-background:#ffd6e8;
-top:-80px;
-left:-80px;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
 }
 
-.blob2{
-width:250px;
-height:250px;
-background:#d6f5ff;
-bottom:-50px;
-right:-50px;
-animation-delay:3s;
+.logo{
+font-size:22px;
+font-weight:700;
+letter-spacing:3px;
 }
 
-@keyframes float{
-0%,100%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(40px);
-}
+.logo span{
+display:block;
+font-size:12px;
+font-weight:400;
+letter-spacing:2px;
+color:#888;
+margin-top:-3px;
 }
 
-/* Hero */
+/* HERO */
 
 .hero{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
 text-align:center;
-padding:20px;
-}
-
-.hero-content{
-animation:fadeUp 1.2s ease;
+padding:80px 20px;
+background:linear-gradient(135deg,#ffeef5,#f3f0ff,#e9f7ff);
 }
 
 .hero h1{
-font-size:5rem;
-letter-spacing:6px;
-font-weight:700;
-color:#5a5a5a;
+font-size:50px;
+letter-spacing:5px;
 }
 
-.hero h2{
-font-size:1.1rem;
-font-weight:300;
-margin-top:-10px;
-letter-spacing:4px;
-color:#888;
-}
-
-.tagline{
-margin-top:30px;
-font-size:1.2rem;
+.hero p{
+margin-top:10px;
 color:#666;
 }
 
-/* Cards */
+/* PRODUCTS */
 
-.section{
-padding:80px 20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-max-width:1100px;
-margin:auto;
-}
-
-.card{
-background:rgba(255,255,255,.7);
-backdrop-filter:blur(15px);
-padding:35px;
-border-radius:25px;
+.section-title{
 text-align:center;
-transition:.4s;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-
-.card:hover{
-transform:translateY(-12px) scale(1.03);
-}
-
-.card h3{
-font-size:1.3rem;
-color:#555;
-margin-bottom:10px;
-}
-
-.card p{
-color:#777;
-}
-
-/* Gifting Section */
-
-.gifting{
-text-align:center;
-padding:70px 20px;
-}
-
-.gifting h2{
-font-size:2rem;
-margin-bottom:15px;
-color:#555;
-}
-
-.gifting p{
-max-width:700px;
-margin:auto;
-line-height:1.8;
-color:#666;
-}
-
-/* Footer */
-
-footer{
-padding:50px 20px;
-text-align:center;
-color:#777;
-font-size:0.95rem;
-}
-
-footer span{
+margin:50px 0 20px;
+font-size:26px;
 font-weight:600;
 }
 
-/* Animations */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+padding:20px 40px;
 }
 
 .card{
-animation:fadeUp 1s ease;
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:0.3s;
 }
 
-@media(max-width:768px){
-
-.hero h1{
-font-size:3rem;
+.card:hover{
+transform:translateY(-8px);
 }
 
-.hero h2{
-font-size:0.9rem;
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+background:#f0f0f0;
 }
 
+.card-content{
+padding:15px;
+}
+
+.card h3{
+font-size:16px;
+}
+
+.price{
+color:#888;
+margin:5px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+border:none;
+background:#ff7aa2;
+color:white;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#ff4f87;
+}
+
+/* CART */
+
+.cart{
+position:fixed;
+right:20px;
+bottom:20px;
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+width:260px;
+}
+
+.cart h4{
+margin-bottom:10px;
+}
+
+.cart-items{
+font-size:13px;
+max-height:120px;
+overflow:auto;
+margin-bottom:10px;
+}
+
+.checkout{
+background:#333;
+margin-top:10px;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:40px;
+color:#888;
+}
+
+@media(max-width:600px){
+.hero h1{font-size:32px;}
+header{padding:15px 20px;}
+.products{padding:10px;}
 }
 
 </style>
@@ -205,69 +179,105 @@ font-size:0.9rem;
 
 <body>
 
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
+<header>
+<div class="logo">
+ORSTAT
+<span>by Mariam</span>
+</div>
 
-<section class="hero">
+<div>🛍️ Store</div>
+</header>
 
-<div class="hero-content">
-
+<div class="hero">
 <h1>ORSTAT</h1>
-<h2>by Mariam</h2>
-
-<p class="tagline">
-Stationery • Stickers • Gifts • Vibes
-</p>
-
+<p>Stationery • Stickers • Gifts • Vibes</p>
 </div>
 
-</section>
+<h2 class="section-title">Shop Collection</h2>
 
-<section class="section">
+<div class="products">
 
-<div class="grid">
-
+<!-- PRODUCT TEMPLATE (COPY THIS BLOCK TO ADD MORE PRODUCTS) -->
 <div class="card">
-<h3>📒 Stationery</h3>
-<p>Beautiful stationery designed to brighten your day.</p>
+<img src="https://via.placeholder.com/300" alt="product">
+<div class="card-content">
+<h3>Product Name</h3>
+<div class="price">PKR 0</div>
+<button onclick="addToCart('Product Name', 0)">Add to Cart</button>
+</div>
 </div>
 
 <div class="card">
-<h3>✨ Stickers</h3>
-<p>Cute and aesthetic stickers for every vibe.</p>
+<img src="https://via.placeholder.com/300" alt="product">
+<div class="card-content">
+<h3>Sticker Pack</h3>
+<div class="price">PKR 250</div>
+<button onclick="addToCart('Sticker Pack', 250)">Add to Cart</button>
+</div>
 </div>
 
 <div class="card">
-<h3>🎁 Gifts</h3>
-<p>Thoughtful gifts crafted with love and care.</p>
+<img src="https://via.placeholder.com/300" alt="product">
+<div class="card-content">
+<h3>Floral Journal</h3>
+<div class="price">PKR 850</div>
+<button onclick="addToCart('Floral Journal', 850)">Add to Cart</button>
+</div>
 </div>
 
-<div class="card">
-<h3>🌷 Vibes</h3>
-<p>Pastel aesthetics, cozy feelings, and happy moments.</p>
 </div>
 
+<!-- CART -->
+<div class="cart">
+<h4>🛒 Your Cart</h4>
+<div class="cart-items" id="cartItems"></div>
+<div><strong>Total: PKR <span id="total">0</span></strong></div>
+
+<button class="checkout" onclick="checkout()">Checkout on WhatsApp</button>
 </div>
-
-</section>
-
-<section class="gifting">
-
-<h2>Custom & Bulk Gifting Available</h2>
-
-<p>
-Whether you're planning event favors, business gifts,
-birthday surprises, or custom orders, ORSTAT can create
-something uniquely yours.
-</p>
-
-</section>
 
 <footer>
-
-Made with ♡ by <span>ORSTAT</span>
-
+Made with ♡ by ORSTAT
 </footer>
+
+<script>
+
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+cart.push({name, price});
+total += price;
+updateCart();
+}
+
+function updateCart(){
+let cartItems = document.getElementById("cartItems");
+cartItems.innerHTML = "";
+
+cart.forEach(item=>{
+cartItems.innerHTML += item.name + " - PKR " + item.price + "<br>";
+});
+
+document.getElementById("total").innerText = total;
+}
+
+function checkout(){
+
+let message = "Hello ORSTAT 🌷 I want to order:%0A%0A";
+
+cart.forEach(item=>{
+message += "• " + item.name + " - PKR " + item.price + "%0A";
+});
+
+message += "%0ATotal: PKR " + total;
+
+let phone = "923023849098";
+
+window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
+}
+
+</script>
 
 </body>
 </html>
