@@ -9,6 +9,7 @@
 
 <style>
 
+/* BASE */
 *{
 margin:0;
 padding:0;
@@ -17,71 +18,91 @@ font-family:Poppins,sans-serif;
 }
 
 body{
-background:#fff8f6;
+background:linear-gradient(135deg,#fff7f9,#f4f0ff,#eef9ff);
 color:#333;
 }
 
-/* HEADER */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-background:white;
-position:sticky;
-top:0;
-z-index:1000;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
-}
-
-.logo{
-font-size:22px;
-font-weight:700;
-letter-spacing:3px;
-}
-
-.logo span{
-display:block;
-font-size:12px;
-font-weight:400;
-letter-spacing:2px;
-color:#888;
-margin-top:-3px;
-}
-
 /* HERO */
-
 .hero{
 text-align:center;
-padding:80px 20px;
-background:linear-gradient(135deg,#ffeef5,#f3f0ff,#e9f7ff);
+padding:90px 20px;
+background:linear-gradient(120deg,#ffe4ec,#e8e1ff,#dff7ff);
+position:relative;
+overflow:hidden;
 }
 
 .hero h1{
-font-size:50px;
-letter-spacing:5px;
+font-size:60px;
+letter-spacing:6px;
+animation:fadeUp 1s ease;
 }
 
 .hero p{
 margin-top:10px;
-color:#666;
+color:#555;
+font-size:16px;
+}
+
+/* floating glow */
+.hero::before,.hero::after{
+content:"";
+position:absolute;
+width:220px;
+height:220px;
+border-radius:50%;
+filter:blur(90px);
+opacity:0.5;
+}
+
+.hero::before{
+background:#ffb6d5;
+top:-60px;
+left:-60px;
+}
+
+.hero::after{
+background:#b6d8ff;
+bottom:-60px;
+right:-60px;
+}
+
+/* CATEGORY */
+.categories{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+.cat{
+padding:8px 15px;
+border-radius:20px;
+background:white;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+font-size:13px;
+transition:0.3s;
+cursor:pointer;
+}
+
+.cat:hover{
+transform:scale(1.05);
+background:#ffe6f0;
 }
 
 /* PRODUCTS */
-
 .section-title{
 text-align:center;
-margin:50px 0 20px;
+margin-top:40px;
 font-size:26px;
 font-weight:600;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:25px;
-padding:20px 40px;
+padding:40px;
 }
 
 .card{
@@ -89,18 +110,19 @@ background:white;
 border-radius:20px;
 overflow:hidden;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-transition:0.3s;
+transition:0.4s;
+animation:fadeUp 0.8s ease;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-10px) scale(1.02);
 }
 
 .card img{
 width:100%;
-height:200px;
+height:220px;
 object-fit:cover;
-background:#f0f0f0;
+background:#f2f2f2;
 }
 
 .card-content{
@@ -108,40 +130,43 @@ padding:15px;
 }
 
 .card h3{
-font-size:16px;
+font-size:15px;
+margin-bottom:5px;
 }
 
 .price{
-color:#888;
-margin:5px 0;
+color:#ff4f87;
+font-weight:600;
+margin-bottom:10px;
 }
 
+/* BUTTON */
 button{
-width:100%;
-padding:10px;
+background:#ff6fa3;
 border:none;
-background:#ff7aa2;
 color:white;
-border-radius:10px;
+padding:10px;
+border-radius:12px;
+width:100%;
 cursor:pointer;
 transition:0.3s;
 }
 
 button:hover{
-background:#ff4f87;
+background:#ff3f82;
 }
 
 /* CART */
-
 .cart{
 position:fixed;
 right:20px;
 bottom:20px;
-background:white;
+width:290px;
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(12px);
+border-radius:18px;
 padding:15px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-width:260px;
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
 }
 
 .cart h4{
@@ -150,28 +175,32 @@ margin-bottom:10px;
 
 .cart-items{
 font-size:13px;
-max-height:120px;
+max-height:140px;
 overflow:auto;
 margin-bottom:10px;
 }
 
 .checkout{
-background:#333;
+background:#222;
 margin-top:10px;
 }
 
 /* FOOTER */
-
 footer{
 text-align:center;
 padding:40px;
-color:#888;
+color:#777;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 @media(max-width:600px){
-.hero h1{font-size:32px;}
-header{padding:15px 20px;}
-.products{padding:10px;}
+.hero h1{font-size:38px;}
+.products{padding:20px;}
 }
 
 </style>
@@ -179,48 +208,54 @@ header{padding:15px 20px;}
 
 <body>
 
-<header>
-<div class="logo">
-<img src="logo.png" alt="ORSTAT Logo" style="height:40px;">
-</div>
-<div>🛍️ Store</div>
-</header>
-
+<!-- HERO -->
 <div class="hero">
 <h1>ORSTAT</h1>
 <p>Stationery • Stickers • Gifts • Vibes</p>
+
+<div class="categories">
+<div class="cat">Stationery</div>
+<div class="cat">Stickers</div>
+<div class="cat">Gifts</div>
+<div class="cat">Custom Orders</div>
+</div>
 </div>
 
+<!-- PRODUCTS -->
 <h2 class="section-title">Shop Collection</h2>
 
 <div class="products">
 
-<!-- PRODUCT TEMPLATE (COPY THIS BLOCK TO ADD MORE PRODUCTS) -->
+<!-- PRODUCT 1 -->
 <div class="card">
 <img src="scrapbook.jpg">
 <div class="card-content">
-<h3>Red Warm Mail Series Scrapbooking Collection- Gift Box Set Of 122</h3>
+<h3>Red Warm Mail Series Scrapbooking Gift Box Set</h3>
 <div class="price">PKR 2495</div>
-<button onclick="addToCart('Red Warm Mail Series Scrapbooking Collection- Gift Box Set Of 122', 2495)">Add to Cart</button>
+<button onclick="addToCart('Scrapbooking Gift Box Set', 2495)">Add to Cart</button>
 </div>
 </div>
 
+<!-- PRODUCT 2 -->
 <div class="card">
 <img src="tape.jpg">
 <div class="card-content">
-<h3>Stripe Gold Foil Pink- Washi Tape</h3>
+<h3>Stripe Gold Foil Pink Washi Tape</h3>
 <div class="price">PKR 375</div>
-<button onclick="addToCart('Stripe Gold Foil Pink- Washi Tape', 375)">Add to Cart</button>
+<button onclick="addToCart('Washi Tape', 375)">Add to Cart</button>
 </div>
 </div>
 
+<!-- PRODUCT 3 -->
 <div class="card">
 <img src="journal.jpg">
 <div class="card-content">
-<h3>Cafe Terrace at Night Van Gogh Series- Gift Box Set Style 1</h3>
+<h3>Cafe Terrace at Night Gift Box Set</h3>
 <div class="price">PKR 2995</div>
-<button onclick="addToCart('Terrace at Night Van Gogh Series- Gift Box Set Style 1', 2995)">Add to Cart</button>
+<button onclick="addToCart('Gift Box Set', 2995)">Add to Cart</button>
 </div>
+</div>
+
 </div>
 
 <!-- CART -->
@@ -232,6 +267,7 @@ header{padding:15px 20px;}
 <button class="checkout" onclick="checkout()">Checkout on WhatsApp</button>
 </div>
 
+<!-- FOOTER -->
 <footer>
 Made with ♡ by ORSTAT
 </footer>
@@ -252,7 +288,7 @@ let cartItems = document.getElementById("cartItems");
 cartItems.innerHTML = "";
 
 cart.forEach(item=>{
-cartItems.innerHTML += item.name + " - PKR " + item.price + "<br>";
+cartItems.innerHTML += "• " + item.name + " - PKR " + item.price + "<br>";
 });
 
 document.getElementById("total").innerText = total;
